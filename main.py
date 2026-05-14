@@ -16,6 +16,10 @@ import sys
 import os
 import argparse
 
+if sys.platform != "win32":
+    print("\nDude, didn't you see this tool was made for Windows? lol.\n")
+    sys.exit(1)
+
 # ── Add winhub package to path ────────────────────────────────────────────────
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
