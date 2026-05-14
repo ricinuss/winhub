@@ -1,76 +1,88 @@
-# WinHub 🚀
-**Windows System Optimizer & Health Monitor**
+# Chris Titus Tech's Windows Utility
 
-A modern, CLI-based hub for Windows 10/11 system health diagnostics and optimizations. Written in Python, interacting with Windows internals via PowerShell and WMI. 
+[![Version](https://img.shields.io/github/v/release/ChrisTitusTech/winutil?color=%230567ff&label=Latest%20Release&style=for-the-badge)](https://github.com/ChrisTitusTech/winutil/releases/latest)
+![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/ChrisTitusTech/winutil/winutil.ps1?label=Total%20Downloads&style=for-the-badge)
+[![](https://dcbadge.limes.pink/api/server/https://discord.gg/RUbZUZyByQ?theme=default-inverted&style=for-the-badge)](https://discord.gg/RUbZUZyByQ)
+[![Static Badge](https://img.shields.io/badge/Documentation-_?style=for-the-badge&logo=bookstack&color=grey)](https://winutil.christitus.com/)
 
-*Inspired by and adapted from the excellent Chris Titus WinUtil.*  
-**Author:** ricinus ([@ricinuss](https://github.com/ricinuss))
+This utility is a compilation of Windows tasks I perform on each Windows system I use. It is meant to streamline *installs*, debloat with *tweaks*, troubleshoot with *config*, and fix Windows *updates*. I am extremely picky about any contributions to keep this project clean and efficient.
 
----
+![screen-install](/docs/assets/images/Title-Screen.png)
 
-## 🌟 Features
+## 💡 Usage
 
-- **📊 System Health Diagnostics:** Live scanning of CPU, RAM, Disk, Startup impact, Background Services, and Power configurations to generate an instant health grade (A+ to F).
-- **⚡ One-Click Optimization Presets:**
-  - **Safe Mode:** Risk-free tweaks like telemetry removal and startup cleanup.
-  - **Balanced Mode:** Moderate tweaks for daily use.
-  - **Extreme Mode:** Aggressive performance tweaks for max speed.
-- **🛠️ Custom Profile Builder:** Browse a detailed list of system tweaks, toggle them with `SPACE`, and build your own custom optimization profile.
-- **💾 Profile Manager:** Save, load, export, and import `.json` tweaking profiles.
-- **🤖 Headless Automation:** Ideal for IT technicians; apply a custom profile instantly via CLI without opening the UI menu.
+Winutil must be run in Admin mode because it performs system-wide tweaks. To achieve this, run PowerShell as an administrator. Here are a few ways to do it:
 
-## 🚀 Installation & Usage
+1. **Start menu Method:**
+   - Right-click on the start menu.
+   - Choose "Windows PowerShell (Admin)" (for Windows 10) or "Terminal (Admin)" (for Windows 11).
 
-### Method 1: The Quick Way (Web Installer)
-Run WinHub directly from GitHub without downloading the repository manually. Open PowerShell as Administrator and run:
-```powershell
-iex (irm https://raw.githubusercontent.com/ricinuss/winhub/main/run.ps1)
+2. **Search and Launch Method:**
+   - Press the Windows key.
+   - Type "PowerShell" or "Terminal" (for Windows 11).
+   - Press `Ctrl + Shift + Enter` or Right-click and choose "Run as administrator" to launch it with administrator privileges.
+
+### Launch Command
+
+#### Stable Branch (Recommended)
+
+```ps1
+irm "https://christitus.com/win" | iex
+```
+#### Dev Branch
+
+```ps1
+irm "https://christitus.com/windev" | iex
 ```
 
-### Method 2: Manual Download
-1. **Clone or Download** the repository.
-2. **Requirements:** Python 3.11+ (Make sure Python is added to your PATH).
-3. **Run `winhub.bat`** (It will automatically request Administrator privileges and install the single dependency `colorama` if needed).
+If you have Issues, refer to [Known Issues](https://winutil.christitus.com/knownissues/) or [Create Issue](https://github.com/ChrisTitusTech/winutil/issues)
 
-### Command-Line Arguments
+## 🎓 Documentation
 
-WinHub can be fully automated from the command line:
+### [WinUtil Official Documentation](https://winutil.christitus.com/)
 
-```powershell
-# Launch the interactive menu
-winhub.bat
+### [YouTube Tutorial](https://www.youtube.com/watch?v=6UQZ5oQg8XA)
 
-# Run a system health scan and print results to the console
-winhub.bat --scan
+### [ChrisTitus.com Article](https://christitus.com/windows-tool/)
 
-# Apply a built-in preset non-interactively
-winhub.bat --preset safe
-winhub.bat --preset balanced
+## 🛠️ Build & Develop
 
-# Apply a custom exported JSON profile (great for fresh Windows installs)
-winhub.bat --apply office_pc.json
+> [!NOTE]
+> Winutil is a relatively large script, so it's split into multiple files which're combined into a single `.ps1` file using a custom compiler. This makes maintaining the project a lot easier.
 
-# List all saved custom profiles
-winhub.bat --list-profiles
+Get a copy of the source code. This can be done using GitHub UI (**Code** > **Download ZIP**), or by cloning (downloading) the repo using git.
+
+If git is installed, run the following commands under a PowerShell window to clone and move into the project's directory:
+```ps1
+git clone --depth 1 "https://github.com/ChrisTitusTech/winutil.git"
+cd winutil
 ```
 
-## 📂 Project Structure
-
-```text
-winhub/
- ├── core/          # Constants, utilities, PowerShell runner, registry helpers
- ├── optimizers/    # Tweak applier engine, database of 18+ tweaks
- ├── profiles/      # Saved JSON optimization profiles
- ├── scanners/      # Health scanners (CPU, RAM, Disk, Services, Power)
- ├── ui/            # Terminal UI renderer, interactive menus
- ├── main.py        # CLI entry point
- └── winhub.bat     # Admin launcher & dependency checker
+To build the project, run the Compile Script under a PowerShell window (admin permissions IS NOT required):
+```ps1
+.\Compile.ps1
 ```
 
-## 📜 Credits & Acknowledgments
+You'll see a new file named `winutil.ps1`, which was created by `Compile.ps1` script. Now you can run it as admin, and a new window will pop up. Enjoy your own compiled version of WinUtil :)
 
-- Huge thanks to **Chris Titus** and all contributors to [WinUtil](https://github.com/ChrisTitusTech/winutil) for curating, testing, and sharing the underlying registry and PowerShell tweaks that make this tool possible.
-- Developed by **ricinus** ([GitHub](https://github.com/ricinuss)).
+> [!TIP]
+> For more info on using WinUtil and how to develop for it, please consider reading [the Contribution Guidelines](https://winutil.christitus.com/contributing/). If you don't know where to start, or have questions, you can ask over on our [Discord Community Server](https://discord.gg/RUbZUZyByQ), and active project members will answer when they can.
 
----
-*Disclaimer: System tweaks involve modifying the Windows Registry and Services. While the "Safe" tweaks are heavily tested, always ensure you have a system restore point or backup before applying "Extreme" optimizations.*
+## 💖 Support
+- To morally and mentally support the project, make sure to leave a ⭐️!
+- EXE Wrapper for $10 @ https://www.cttstore.com/windows-toolbox
+
+## 💖 Sponsors
+
+These are the sponsors that help keep this project alive with monthly contributions.
+
+<!-- sponsors --><a href="https://github.com/dwelfusius"><img src="https:&#x2F;&#x2F;github.com&#x2F;dwelfusius.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/mews-se"><img src="https:&#x2F;&#x2F;github.com&#x2F;mews-se.png" width="60px" alt="User avatar: Martin Stockzell" /></a><a href="https://github.com/jdiegmueller"><img src="https:&#x2F;&#x2F;github.com&#x2F;jdiegmueller.png" width="60px" alt="User avatar: Jason A. Diegmueller" /></a><a href="https://github.com/robertsandrock"><img src="https:&#x2F;&#x2F;github.com&#x2F;robertsandrock.png" width="60px" alt="User avatar: RMS" /></a><a href="https://github.com/paulsheets"><img src="https:&#x2F;&#x2F;github.com&#x2F;paulsheets.png" width="60px" alt="User avatar: Paul" /></a><a href="https://github.com/djones369"><img src="https:&#x2F;&#x2F;github.com&#x2F;djones369.png" width="60px" alt="User avatar: Dave J  (WhamGeek)" /></a><a href="https://github.com/anthonymendez"><img src="https:&#x2F;&#x2F;github.com&#x2F;anthonymendez.png" width="60px" alt="User avatar: Anthony Mendez" /></a><a href="https://github.com/FatBastard0"><img src="https:&#x2F;&#x2F;github.com&#x2F;FatBastard0.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/DursleyGuy"><img src="https:&#x2F;&#x2F;github.com&#x2F;DursleyGuy.png" width="60px" alt="User avatar: DursleyGuy" /></a><a href="https://github.com/DwayneTheRockLobster1"><img src="https:&#x2F;&#x2F;github.com&#x2F;DwayneTheRockLobster1.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/KieraKujisawa"><img src="https:&#x2F;&#x2F;github.com&#x2F;KieraKujisawa.png" width="60px" alt="User avatar: Kiera Meredith" /></a><a href="https://github.com/andrewpayne68"><img src="https:&#x2F;&#x2F;github.com&#x2F;andrewpayne68.png" width="60px" alt="User avatar: Andrew P" /></a><a href="https://github.com/Di3Z1E"><img src="https:&#x2F;&#x2F;github.com&#x2F;Di3Z1E.png" width="60px" alt="User avatar: Di3Z1E" /></a><a href="https://github.com/AbdulVakeel"><img src="https:&#x2F;&#x2F;github.com&#x2F;AbdulVakeel.png" width="60px" alt="User avatar: Abdul Vakeel Software Engineer" /></a><!-- sponsors -->
+
+## 🏅 Thanks to all Contributors
+Thanks a lot for spending your time helping Winutil grow. Thanks a lot! Keep rocking 🍻.
+
+[![Contributors](https://contrib.rocks/image?repo=ChrisTitusTech/winutil)](https://github.com/ChrisTitusTech/winutil/graphs/contributors)
+
+## 📊 GitHub Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/aad37eec9114c507f109d34ff8d38a59adc9503f.svg "Repobeats analytics image")
