@@ -301,13 +301,11 @@ def run_custom_mode_ui():
 
         if k == KEY_UP:
             cursor = max(0, cursor - 1)
-            if cursor < scroll:
-                scroll = cursor
+            scroll = (cursor // page_size) * page_size
 
         elif k == KEY_DOWN:
             cursor = min(len(TWEAKS) - 1, cursor + 1)
-            if cursor >= scroll + page_size:
-                scroll = cursor - page_size + 1
+            scroll = (cursor // page_size) * page_size
 
         elif k == KEY_SPACE:
             tid = TWEAKS[cursor]["id"]
