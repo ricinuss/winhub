@@ -1,105 +1,92 @@
-WinHub
+# WinHub
 
-Windows System Optimization and Diagnostics Toolkit
+**Windows System Optimizer & Health Monitor**
 
-WinHub is a command-line utility for Windows 10 and Windows 11 focused on system diagnostics, performance optimization, and reusable deployment profiles. Built in Python, it integrates with native Windows components through PowerShell, WMI, and Registry APIs.
+A CLI-based tool for Windows 10/11 system diagnostics and optimization. Written in Python, interfacing with Windows internals via PowerShell and WMI.
 
-The project is inspired by WinUtil and adapts proven system tweaks into a streamlined CLI workflow.
+*Inspired by and adapted from Chris Titus' [WinUtil](https://github.com/ChrisTitusTech/winutil).*
 
-Author: ricinus
+**Author:** ricinus — [@ricinuss](https://github.com/ricinuss)
 
-Features
-System Diagnostics
+---
 
-Analyze key system metrics and configuration states, including:
+## Features
 
-CPU usage and thermal behavior
-Memory utilization
-Disk health and performance
-Startup applications
-Background services
-Power configuration
+**System Health Diagnostics**
+Live scanning of CPU, RAM, disk, startup impact, background services, and power configuration to produce an instant health grade (A+ to F).
 
-Based on collected data, WinHub generates an overall system health score.
+**Optimization Presets**
+- *Safe* — Risk-free tweaks: telemetry removal, startup cleanup.
+- *Balanced* — Moderate adjustments for everyday use.
+- *Extreme* — Aggressive performance tuning for maximum throughput.
 
-Optimization Presets
+**Custom Profile Builder**
+Browse the full list of available tweaks, toggle individual items with `Space`, and save the result as a reusable profile.
 
-WinHub includes three predefined optimization profiles:
+**Profile Manager**
+Save, load, export, and import optimization profiles as `.json` files.
 
-Safe
-Applies conservative tweaks intended for general stability, including startup cleanup and telemetry-related optimizations.
+**Headless / CLI Automation**
+Apply any profile non-interactively from the command line — useful for scripted deployments and fresh Windows installs.
 
-Balanced
-Applies moderate performance and responsiveness improvements suitable for daily use.
+---
 
-Extreme
-Applies aggressive system optimizations designed for maximum performance.
+## Installation
 
-Custom Optimization Profiles
+### Option 1 — Web installer
 
-Create your own optimization profiles by selecting individual tweaks, then:
+Run directly from GitHub without cloning the repository. Open PowerShell as Administrator:
 
-Save profiles locally
-Export profiles as JSON
-Import profiles across machines
-Reuse profiles on fresh Windows installations
-Automated Deployment
-
-Profiles can be applied directly through the command line without opening the interactive interface, making WinHub suitable for system technicians, IT maintenance, and repeated deployments.
-
-Installation
-Quick Install (PowerShell)
-
-Run directly from the repository:
-
+```powershell
 iex (irm https://raw.githubusercontent.com/ricinuss/winhub/main/run.ps1)
-Manual Installation
-Clone or download the repository.
-Install Python 3.11 or later.
-Ensure Python is available in your system PATH.
-Run:
+```
+
+### Option 2 — Manual
+
+1. Clone or download the repository.
+2. Install **Python 3.11+** and ensure it is on your `PATH`.
+3. Run `winhub.bat` — it requests Administrator privileges automatically and installs `colorama` if needed.
+
+---
+
+## Usage
+
+```powershell
+# Launch the interactive menu
 winhub.bat
 
-The launcher automatically requests administrator privileges and installs required dependencies when needed.
-
-Command Line Usage
-
-Launch interactive mode:
-
-winhub.bat
-
-Run a system diagnostic scan:
-
+# Run a health scan and print results
 winhub.bat --scan
 
-Apply a built-in optimization preset:
-
+# Apply a built-in preset non-interactively
 winhub.bat --preset safe
 winhub.bat --preset balanced
-winhub.bat --preset extreme
 
-Apply a custom profile:
-
+# Apply a saved JSON profile
 winhub.bat --apply office_pc.json
 
-List saved profiles:
-
+# List all saved profiles
 winhub.bat --list-profiles
-Project Structure
+```
+
+---
+
+## Project Structure
 winhub/
-├── core/           Core utilities, PowerShell execution, registry helpers
-├── optimizers/     Optimization engine and tweak definitions
-├── profiles/       Saved optimization profiles
-├── scanners/       Hardware and system diagnostics
-├── ui/             Interactive terminal interface
-├── main.py         CLI entry point
-└── winhub.bat      Windows launcher
-Credits
+├── core/          # Constants, utilities, PowerShell runner, registry helpers
+├── optimizers/    # Tweak engine and database (18+ tweaks)
+├── profiles/      # Saved JSON optimization profiles
+├── scanners/      # Health scanners: CPU, RAM, disk, services, power
+├── ui/            # Terminal renderer and interactive menus
+├── main.py        # CLI entry point
+└── winhub.bat     # Admin launcher and dependency checker
 
-WinHub builds upon research and optimization work from the Chris Titus community project WinUtil.
+---
 
-Special thanks to all contributors involved in testing and documenting Windows optimization techniques.
+## Credits
 
-Disclaimer
+Thanks to **Chris Titus** and the [WinUtil](https://github.com/ChrisTitusTech/winutil) contributors for curating and testing the registry and PowerShell tweaks that underpin this tool.
 
-WinHub applies changes to system settings, services, and the Windows Registry. Before applying performance tweaks, especially under the Extreme preset, it is strongly recommended to create a restore point or full system backup.
+---
+
+*System tweaks modify the Windows Registry and service configuration. Safe-mode tweaks are well-tested, but it is recommended to create a restore point before applying Balanced or Extreme presets.*
