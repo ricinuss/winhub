@@ -27,11 +27,14 @@ def print_line(text: str = "", end: str = "\n"):
 # ──────────────────────────────────────────────────────────────────────────────
 
 BANNER = r"""
- __        ___       _   _       _     
- \ \      / (_)_ __ | | | |_   _| |__ 
-  \ \ /\ / /| | '_ \| |_| | | | | '_ \
-   \ V  V / | | | | |  _  | |_| | |_) |
-    \_/\_/  |_|_| |_|_| |_|\__,_|_.__/ 
+                                                       
+▄▄▄▄  ▄▄▄  ▄▄▄▄           ▄▄▄   ▄▄▄ ▄▄▄  ▄▄▄ ▄▄▄▄▄▄▄   
+▀███  ███  ███▀ ▀▀        ███   ███ ███  ███ ███▀▀███▄ 
+ ███  ███  ███  ██  ████▄ █████████ ███  ███ ███▄▄███▀ 
+ ███▄▄███▄▄███  ██  ██ ██ ███▀▀▀███ ███▄▄███ ███  ███▄ 
+  ▀████▀████▀   ██▄ ██ ██ ███   ███ ▀██████▀ ████████▀ 
+                                                       
+                                                       
 """
 
 
@@ -138,7 +141,8 @@ def draw_score_badge(score: float, grade: str, grade_color: str):
 def draw_metric_row(label: str, value: str, score: float, bar_width: int = 20):
     color = BR_GREEN if score >= 80 else (BR_YELLOW if score >= 60 else BR_RED)
     bar   = make_progress_bar(score, bar_width, fill_color=color)
-    print_line(f"  {color}{BOLD}{label:<18}{RESET}  {WHITE}{value:<22}{RESET}  {bar}")
+    print_line(f"  {color}{BOLD}{label:<18}{RESET}  {WHITE}{value}{RESET}")
+    print_line(f"  {'':<18}  {bar}")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
