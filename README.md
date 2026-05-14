@@ -4,8 +4,6 @@
 
 A CLI-based tool for Windows 10/11 system diagnostics and optimization. Written in Python, interfacing with Windows internals via PowerShell and WMI.
 
-*Inspired by and adapted from Chris Titus' [WinUtil](https://github.com/ChrisTitusTech/winutil).*
-
 **Author:** ricinus — [@ricinuss](https://github.com/ricinuss)
 
 ---
