@@ -72,14 +72,16 @@ winhub.bat --list-profiles
 ---
 
 ## Project Structure
-winhub/
-├── core/          # Constants, utilities, PowerShell runner, registry helpers
-├── optimizers/    # Tweak engine and database (18+ tweaks)
-├── profiles/      # Saved JSON optimization profiles
-├── scanners/      # Health scanners: CPU, RAM, disk, services, power
-├── ui/            # Terminal renderer and interactive menus
-├── main.py        # CLI entry point
-└── winhub.bat     # Admin launcher and dependency checker
+
+| Path | Description |
+|---|---|
+| `core/` | Constants, utilities, PowerShell runner, registry helpers |
+| `optimizers/` | Tweak engine and database (18+ tweaks) |
+| `profiles/` | Saved JSON optimization profiles |
+| `scanners/` | Health scanners: CPU, RAM, disk, services, power |
+| `ui/` | Terminal renderer and interactive menus |
+| `main.py` | CLI entry point |
+| `winhub.bat` | Admin launcher and dependency checker |
 
 ---
 
